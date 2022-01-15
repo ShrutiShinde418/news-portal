@@ -10,10 +10,7 @@ exports.register = async (req, res, next) => {
       password,
     });
 
-    res.status(201).json({
-      success: true,
-      user,
-    });
+    sendToken(user, 201, res);
   } catch (error) {
     next(error);
   }
@@ -34,10 +31,7 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return next(new ErrorResponse("User not found", 401));
     }
-    res.status(200).json({
-      success: true,
-      token: "378widwdw0dd",
-    });
+    sendToken(user, 201, res);
   } catch (error) {
     return next(new ErrorResponse(error.message, 500));
   }
@@ -49,4 +43,12 @@ exports.forgotPassword = (req, res, next) => {
 
 exports.resetPassword = (req, res, next) => {
   res.send("rP route");
+};
+
+const sendToken = (user, statusCode, res) => {
+  const token = user.getSignedToken();
+  res.status(statusCode).json({
+    success: true,
+    token,
+  });
 };
