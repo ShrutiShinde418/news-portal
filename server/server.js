@@ -7,6 +7,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/private", require("./routes/private"));
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
