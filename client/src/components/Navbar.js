@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     "& a:last-of-type": {
       marginRight: 0,
     },
+    "& a span:hover": {
+      color: theme.palette.common.white,
+    },
   },
   logo: {
     maxWidth: "100%",
@@ -58,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     "&:focus": {
-      border: "1px solid #000",
+      border: `1px solid ${theme.palette.common.black}`,
     },
     borderRadius: "4px",
   },
@@ -81,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     position: "-webkit-sticky",
-    fontFamily: "Montserrat",
+    fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightRegular,
     display: "flex",
     justifyContent: "center",
@@ -149,10 +152,18 @@ const Navbar = () => {
               </p>
             </div>
             <div className={classes.tab__menu}>
-              <Link to="/">About &nbsp;/</Link>
-              <Link to="/">Privacy &nbsp;/</Link>
-              <Link to="/">Terms &nbsp;/</Link>
-              <Link to="/">Contact</Link>
+              <Link to="/">
+                <span>About</span> &nbsp;/
+              </Link>
+              <Link to="/">
+                <span>Privacy</span> &nbsp;/
+              </Link>
+              <Link to="/">
+                <span>Terms</span> &nbsp;/
+              </Link>
+              <Link to="/">
+                <span>Contact</span>
+              </Link>
             </div>
           </Box>
         </Container>
