@@ -102,9 +102,9 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
       color: theme.palette.common.white,
       padding: "10px 10px 15px 10px",
-    },
-    "& a:hover": {
-      borderBottom: `2px solid ${theme.palette.common.black}`,
+      "&:hover": {
+        borderBottom: `2px solid ${theme.palette.common.black}`,
+      },
     },
   },
   social: {
@@ -161,7 +161,7 @@ const Navbar = () => {
               <Link to="/">
                 <span>Terms</span> &nbsp;/
               </Link>
-              <Link to="/">
+              <Link to="/contact">
                 <span>Contact</span>
               </Link>
             </div>
@@ -196,6 +196,7 @@ const Navbar = () => {
               }}
               placeholder="Search"
               classes={classes.search}
+              inputProps={{ type: "text" }}
             />
           </FormControl>
         </Box>
@@ -218,6 +219,7 @@ const Navbar = () => {
               <NavLink to="/">POLITICS</NavLink>
               <NavLink to="/">LIFESTYLE</NavLink>
               <NavLink to="/">SPORTS</NavLink>
+              <NavLink to="/contact">CONTACT US</NavLink>
             </div>
             <div className={classes.social}>
               <Link to="/">
