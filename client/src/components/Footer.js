@@ -42,14 +42,14 @@ const useStyles = makeStyles((theme) => ({
       width: "35px",
       height: "35px",
       fontSize: "14px",
-    },
-    "& a:first-of-type": { marginLeft: 0 },
-    "& a:hover": {
-      background: theme.palette.primary.main,
-      "& i": {
-        color: theme.palette.common.white,
+      "&:hover": {
+        background: theme.palette.primary.main,
+        "& i": {
+          color: theme.palette.common.white,
+        },
       },
     },
+    "& a:first-of-type": { marginLeft: 0 },
     "& i": {
       color: theme.palette.common.black,
     },
@@ -66,10 +66,10 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
       fontFamily: theme.typography.fontFamily,
       transition: "0.5s",
-    },
-    "& li a:hover": {
-      color: theme.palette.primary.main,
-      paddingLeft: "10px",
+      "&:hover": {
+        color: theme.palette.primary.main,
+        paddingLeft: "10px",
+      },
     },
     "& li a i": {
       paddingRight: "5px",
@@ -231,9 +231,9 @@ const Footer = () => {
                     height: "35px",
                     borderRadius: "4px",
                   },
-                  "& .MuiOutlinedInput-root:hover":{
-                    border:"1px solid #FFF",
-                  }
+                  "& .MuiOutlinedInput-root:hover": {
+                    border: "1px solid #FFF",
+                  },
                 }}
               >
                 <OutlinedInput
@@ -243,6 +243,7 @@ const Footer = () => {
                     </InputAdornment>
                   }
                   placeholder="Your email here"
+                  inputProps={{ type: "email" }}
                 />
               </FormControl>
             </div>
