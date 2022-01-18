@@ -7,6 +7,7 @@ import {
   FormControl,
   InputAdornment,
 } from "@mui/material";
+import SocialInfo from "./SocialInfo";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     background: "#111111",
     marginTop: "5rem",
-    paddingBottom: "2rem",
     "& .MuiTypography-h4": {
       fontSize: "27px",
       marginBottom: "25px",
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `3px double ${theme.palette.common.white}`,
   },
   social: {
-    marginTop: "1rem",
+    marginTop: "1.8rem",
     "& a": {
       marginLeft: "7px",
       padding: "9px",
@@ -93,163 +93,202 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.primary.main,
     },
   },
+  footerMenu: {
+    display: "flex",
+    justifyContent: "center",
+    padding: "15px 0",
+    borderTop: `1px solid ${theme.palette.common.black}`,
+    marginTop: "2rem",
+    "& a": {
+      color: theme.palette.common.white,
+      fontSize: "14px",
+      marginRight: "15px",
+      paddingRight: "15px",
+      borderRight: `1px solid ${theme.palette.common.white}`,
+      textDecoration: "none",
+      fontFamily: theme.typography.fontFamily,
+      transition: "0.5s",
+      "&:hover": {
+        color: theme.palette.primary.main,
+      },
+    },
+    "& a:last-of-type": {
+      borderRight: "none",
+    },
+  },
+  bottom: {
+    background: theme.palette.common.black,
+    padding: "25px 0",
+    "& .MuiContainer-root": {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    color: theme.palette.common.white,
+    "& h5 a": {
+      textDecoration: "none",
+      color: theme.palette.primary.main,
+      fontWeight: theme.typography.fontWeightBold,
+      "&:hover": {
+        color: theme.palette.common.white,
+      },
+    },
+  },
 }));
 const Footer = () => {
   const classes = useStyles();
   return (
-    <footer className={classes.root}>
-      <Container>
-        <Grid container spacing={4}>
-          <Grid item md={6} lg={3}>
-            <Typography component="h1" variant="h4" className={classes.title}>
-              Get in Touch
-            </Typography>
-            <div>
-              <Typography component="h2" variant="body1">
-                <i className="fa fa-map-marker"></i>&nbsp;123 News Street, NY,
-                USA
+    <footer>
+      <div className={classes.root}>
+        <Container>
+          <Grid container spacing={4}>
+            <Grid item md={6} lg={3}>
+              <Typography component="h1" variant="h4" className={classes.title}>
+                Get in Touch
               </Typography>
-              <Typography component="h2" variant="body1">
-                <i className="fa fa-envelope"></i>&nbsp;info@example.com
-              </Typography>
-              <Typography>
-                <i className="fa fa-phone"></i>&nbsp;+123-456-7890
-              </Typography>
-              <div className={classes.social}>
-                <Link to="#">
-                  <i className="fab fa-twitter fa-lg"></i>
-                </Link>
-                <Link to="#">
-                  <i
-                    className="fab fa-facebook-f fa-lg"
-                    style={{ width: "20px" }}
-                  ></i>
-                </Link>
-                <Link to="#">
-                  <i
-                    className="fab fa-linkedin-in fa-lg"
-                    style={{ width: "20px" }}
-                  ></i>
-                </Link>
-                <Link to="#">
-                  <i
-                    className="fab fa-instagram fa-lg"
-                    style={{ width: "22px" }}
-                  ></i>
-                </Link>
-                <Link to="#">
-                  <i className="fab fa-youtube fa-lg"></i>
-                </Link>
+              <div>
+                <Typography component="h2" variant="body1">
+                  <i className="fa fa-map-marker"></i>&nbsp;123 News Street, NY,
+                  USA
+                </Typography>
+                <Typography component="h2" variant="body1">
+                  <i className="fa fa-envelope"></i>&nbsp;info@example.com
+                </Typography>
+                <Typography>
+                  <i className="fa fa-phone"></i>&nbsp;+123-456-7890
+                </Typography>
+                <SocialInfo styles={classes.social} />
               </div>
-            </div>
-          </Grid>
-          <Grid item md={6} lg={3}>
-            <Typography component="h1" variant="h4" className={classes.title}>
-              Useful Links
-            </Typography>
-            <ul className={classes.links}>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Lorem ipsum
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Pellentesque
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Aenean vulputate
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Vestibulum sit amet
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Nam dignissim
-                </Link>
-              </li>
-            </ul>
-          </Grid>
-          <Grid item md={6} lg={3}>
-            <Typography component="h1" variant="h4" className={classes.title}>
-              Quick Links
-            </Typography>
-            <ul className={classes.links}>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Lorem ipsum
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Pellentesque
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Aenean vulputate
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Vestibulum sit amet
-                </Link>
-              </li>
-              <li>
-                <Link to="#">
-                  <i className="fas fa-arrow-right"></i>Nam dignissim
-                </Link>
-              </li>
-            </ul>
-          </Grid>
-          <Grid item md={6} lg={3}>
-            <Typography component="h1" variant="h4" className={classes.title}>
-              Newsletter
-            </Typography>
-            <div className="newsletter">
-              <Typography
-                variant="body1"
-                component="h2"
-                style={{
-                  marginBottom: "15px",
-                }}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                sed porta dui. Class aptent taciti sociosqu
+            </Grid>
+            <Grid item md={6} lg={3}>
+              <Typography component="h1" variant="h4" className={classes.title}>
+                Useful Links
               </Typography>
-              <FormControl
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    paddingRight: 0,
-                    justifyContent: "space-between",
-                    backgroundColor: "#FFF",
-                    height: "35px",
-                    borderRadius: "4px",
-                  },
-                  "& .MuiOutlinedInput-root:hover": {
-                    border: "1px solid #FFF",
-                  },
-                }}
-              >
-                <OutlinedInput
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <button className={classes.btn}>Submit</button>
-                    </InputAdornment>
-                  }
-                  placeholder="Your email here"
-                  inputProps={{ type: "email" }}
-                />
-              </FormControl>
-            </div>
+              <ul className={classes.links}>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Lorem ipsum
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Pellentesque
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Aenean vulputate
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Vestibulum sit amet
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Nam dignissim
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+            <Grid item md={6} lg={3}>
+              <Typography component="h1" variant="h4" className={classes.title}>
+                Quick Links
+              </Typography>
+              <ul className={classes.links}>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Lorem ipsum
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Pellentesque
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Aenean vulputate
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Vestibulum sit amet
+                  </Link>
+                </li>
+                <li>
+                  <Link to="#">
+                    <i className="fas fa-arrow-right"></i>Nam dignissim
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+            <Grid item md={6} lg={3}>
+              <Typography component="h1" variant="h4" className={classes.title}>
+                Newsletter
+              </Typography>
+              <div className="newsletter">
+                <Typography
+                  variant="body1"
+                  component="h2"
+                  style={{
+                    marginBottom: "15px",
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Vivamus sed porta dui. Class aptent taciti sociosqu
+                </Typography>
+                <FormControl
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      paddingRight: 0,
+                      justifyContent: "space-between",
+                      backgroundColor: "#FFF",
+                      height: "35px",
+                      borderRadius: "4px",
+                    },
+                    "& .MuiOutlinedInput-root:hover": {
+                      border: "1px solid #FFF",
+                    },
+                  }}
+                >
+                  <OutlinedInput
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <button className={classes.btn}>Submit</button>
+                      </InputAdornment>
+                    }
+                    placeholder="Your email here"
+                    inputProps={{ type: "email" }}
+                  />
+                </FormControl>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+          <div className={classes.footerMenu}>
+            <Link to="/">Terms of use</Link>
+            <Link to="/">Privacy Policy</Link>
+            <Link to="/">Cookies</Link>
+            <Link to="/">Accessibility Help</Link>
+            <Link to="/">Advertise with us</Link>
+            <Link to="/contact">Contact us</Link>
+          </div>
+        </Container>
+      </div>
+      <div className={classes.bottom}>
+        <Container>
+          <Typography component="h4">
+            Copyright &copy; All Rights Reserved
+          </Typography>
+          <Typography component="h5">
+            Coded by&nbsp;
+            <a href="https://github.com/ShrutiShinde418">
+              Shruti Shinde &nbsp;
+            </a>
+            and&nbsp;<a href="https://github.com/Durgvanshi">Aryan Singh</a>
+          </Typography>
+        </Container>
+      </div>
     </footer>
   );
 };
