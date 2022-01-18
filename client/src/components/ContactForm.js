@@ -8,6 +8,7 @@ import {
   OutlinedInput,
   Button,
 } from "@mui/material";
+import SocialInfo from "./SocialInfo";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -164,32 +165,7 @@ const ContactForm = () => {
           <Typography>
             <i className="fa fa-phone"></i>&nbsp;+123-456-7890
           </Typography>
-          <div className={classes.social}>
-            <Link to="#">
-              <i className="fab fa-twitter fa-lg"></i>
-            </Link>
-            <Link to="#">
-              <i
-                className="fab fa-facebook-f fa-lg"
-                style={{ width: "20px" }}
-              ></i>
-            </Link>
-            <Link to="#">
-              <i
-                className="fab fa-linkedin-in fa-lg"
-                style={{ width: "20px" }}
-              ></i>
-            </Link>
-            <Link to="#">
-              <i
-                className="fab fa-instagram fa-lg"
-                style={{ width: "22px" }}
-              ></i>
-            </Link>
-            <Link to="#">
-              <i className="fab fa-youtube fa-lg"></i>
-            </Link>
-          </div>
+          <SocialInfo styles={classes.social}/>
         </Grid>
       </Grid>
     </Container>
