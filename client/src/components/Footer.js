@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "9px",
       textAlign: "center",
       background: theme.palette.common.white,
-      borderRadius: "4px",
+      borderRadius: theme.shape.borderRadius,
       width: "35px",
       height: "35px",
       fontSize: "14px",

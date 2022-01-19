@@ -36,39 +36,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const categories = [
+export const categories = [
   {
     id: 1,
     title: "National",
     no: 98,
   },
   {
-    id: 1,
+    id: 2,
     title: "International",
     no: 87,
   },
   {
-    id: 1,
+    id: 3,
     title: "Economics",
     no: 76,
   },
   {
-    id: 1,
+    id: 4,
     title: "Politics",
     no: 65,
   },
   {
-    id: 1,
+    id: 5,
     title: "Lifestyle",
     no: 54,
   },
   {
-    id: 1,
+    id: 6,
     title: "Technology",
     no: 43,
   },
   {
-    id: 1,
+    id: 7,
     title: "Trades",
     no: 32,
   },
