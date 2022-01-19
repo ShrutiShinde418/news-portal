@@ -8,6 +8,7 @@ import NewsCategory from "../components/NewsCategory";
 import TagsCloud from "../components/TagsCloud";
 import InThisCategory from "../components/InThisCategory";
 
+
 const Home = () => {
   return (
     <React.Fragment>
