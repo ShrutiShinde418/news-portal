@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "9px",
       textAlign: "center",
       background: theme.palette.common.white,
-      borderRadius: "4px",
+      borderRadius: theme.shape.borderRadius,
       width: "40px",
       height: "40px",
       fontSize: "14px",
@@ -165,7 +165,7 @@ const ContactForm = () => {
           <Typography>
             <i className="fa fa-phone"></i>&nbsp;+123-456-7890
           </Typography>
-          <SocialInfo styles={classes.social}/>
+          <SocialInfo styles={classes.social} />
         </Grid>
       </Grid>
     </Container>

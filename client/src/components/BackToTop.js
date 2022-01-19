@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     left: "95vw",
     bottom: "15px",
     transition: "background 0.5s",
-    borderRadius: "4px",
+    borderRadius: theme.shape.borderRadius,
     zIndex: 11,
     "&:hover": {
       background: theme.palette.common.black,

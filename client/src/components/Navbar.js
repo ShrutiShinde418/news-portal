@@ -63,12 +63,12 @@ const useStyles = makeStyles((theme) => ({
     "&:focus": {
       border: `1px solid ${theme.palette.common.black}`,
     },
-    borderRadius: "4px",
+    borderRadius: theme.shape.borderRadius,
   },
   btn: {
     height: "50px",
     width: "45px",
-    borderRadius: "4px",
+    borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.common.white,
     border: "none",
     "& .fa-search": {
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "5px 7px",
       textAlign: "center",
       background: theme.palette.primary.main,
-      borderRadius: "4px",
+      borderRadius: theme.shape.borderRadius,
       width: "30px",
       height: "30px",
       fontSize: "14px",

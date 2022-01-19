@@ -5,6 +5,8 @@ import ReadMore from "../components/ReadMore";
 import { Container, Grid } from "@mui/material";
 import BackToTop from "../components/BackToTop";
 import NewsCategory from "../components/NewsCategory";
+import TagsCloud from "../components/TagsCloud";
+import InThisCategory from "../components/InThisCategory";
 
 const Home = () => {
   return (
@@ -16,7 +18,13 @@ const Home = () => {
             <ReadMore />
           </Grid>
           <Grid item md={4}>
-            <NewsCategory/>
+            <NewsCategory />
+          </Grid>
+          <Grid item md={4}>
+            <TagsCloud />
+          </Grid>
+          <Grid item md={4}>
+            <InThisCategory />
           </Grid>
         </Grid>
       </Container>
