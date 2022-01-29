@@ -220,6 +220,7 @@ const Navbar = () => {
               <NavLink to="/">LIFESTYLE</NavLink>
               <NavLink to="/">SPORTS</NavLink>
               <NavLink to="/contact">CONTACT US</NavLink>
+              <NavLink to="/login_registration">LOGIN</NavLink>
             </div>
             <div className={classes.social}>
               <Link to="/">

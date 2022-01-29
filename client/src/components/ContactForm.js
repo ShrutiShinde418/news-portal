@@ -96,13 +96,13 @@ const ContactForm = () => {
             <Grid container spacing={2}>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
                 <FormControl fullWidth>
-                  <OutlinedInput placeholder="Your Name" required type="text" />
+                  <OutlinedInput placeholder="Your Name *" required type="text" />
                 </FormControl>
               </Grid>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
                 <FormControl fullWidth>
                   <OutlinedInput
-                    placeholder="Your Email"
+                    placeholder="Your Email *"
                     required
                     type="email"
                   />
@@ -110,13 +110,13 @@ const ContactForm = () => {
               </Grid>
               <Grid item md={12}>
                 <FormControl fullWidth>
-                  <OutlinedInput placeholder="Subject" required type="text" />
+                  <OutlinedInput placeholder="Subject *" required type="text" />
                 </FormControl>
               </Grid>
               <Grid item md={12}>
                 <FormControl fullWidth>
                   <OutlinedInput
-                    placeholder="Message"
+                    placeholder="Message *"
                     multiline
                     minRows={5}
                     maxRows={5}

@@ -7,7 +7,7 @@ exports.register = async (req, res, next) => {
 
   try {
     const user = await User.create({
-      username,
+      fullName,
       email,
       password,
     });
@@ -121,5 +121,6 @@ const sendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     success: true,
     token,
+    role: user.role,
   });
 };
