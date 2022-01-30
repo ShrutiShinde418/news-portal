@@ -47,7 +47,7 @@ const TagsCloud = () => {
       </Typography>
       <div className={classes.tags}>
         {categories.map((category) => {
-          return <Link to="/">{category.title}</Link>;
+          return <Link to="/" key={category.id}>{category.title}</Link>;
         })}
       </div>
     </div>

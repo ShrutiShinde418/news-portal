@@ -76,8 +76,8 @@ const InThisCategory = () => {
       <Grid container spacing={2} sx={{ justifyContent: "space-between", alignItems: "center" }}>
         {news.map((newsItem) => {
           return (
-            <Fragment>
-              <Grid item key={newsItem.id} md={4}>
+            <Fragment key={newsItem.id}>
+              <Grid item md={4}>
                 <img src={newsItem.image} className={classes.imgFluid} />
               </Grid>
               <Grid item md={8}>

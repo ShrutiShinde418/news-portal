@@ -1,6 +1,7 @@
 require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 const connectDB = require("./config/db");
+const cors = require("cors");
 const authRouter = require("./routes/auth");
 const privateRouter = require("./routes/private");
 const errorHandler = require("./middleware/error");
@@ -9,6 +10,7 @@ const subscriptionRouter = require("./routes/subscription");
 connectDB();
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/private", privateRouter);
 app.use("/api/subscription", subscriptionRouter);
