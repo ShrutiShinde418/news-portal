@@ -19,8 +19,8 @@ router.route("/add-category").post((req, res, next) => {
   Category.create(req.body)
     .then(
       (category) => {
-        res.status(200).json(category);
         res.setHeader("Content-Type", "application/json");
+        res.status(200).json(category);
       },
       (err) => next(err)
     )

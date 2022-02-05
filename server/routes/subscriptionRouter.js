@@ -4,7 +4,7 @@ const {
   getSubscribers,
   insertSubscriber,
   deleteSubscriber,
-} = require("../controllers/subscription");
+} = require("../controllers/subscriptionController");
 
 subscriptionRouter.route("/get-subscribers").get(getSubscribers);
 

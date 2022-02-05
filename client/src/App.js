@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContactPage from "./pages/ContactPage";
 import LoginOrRegistrationPage from "./pages/LoginOrRegistrationPage";
-
+import SubscriptionPage from "./pages/SubscriptionPage";
 
 const theme = createTheme({
   palette: {
@@ -32,6 +32,7 @@ const App = () => {
           path="/login_registration"
           element={<LoginOrRegistrationPage />}
         />
+        <Route path="/subscribe" element={<SubscriptionPage />} />
       </Routes>
       <Footer />
     </ThemeProvider>

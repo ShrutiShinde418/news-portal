@@ -2,10 +2,11 @@ require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
-const authRouter = require("./routes/auth");
-const privateRouter = require("./routes/private");
+const authRouter = require("./routes/authRouter");
+const contactRouter = require("./routes/contactRouter");
+const privateRouter = require("./routes/privateRouter");
 const errorHandler = require("./middleware/error");
-const subscriptionRouter = require("./routes/subscription");
+const subscriptionRouter = require("./routes/subscriptionRouter");
 //Connect DB
 connectDB();
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use("/api/auth", authRouter);
 app.use("/api/private", privateRouter);
 app.use("/api/subscription", subscriptionRouter);
+app.use("/api/contact", contactRouter);
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 app.use((err, req, res, next) => {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   Grid,
@@ -80,6 +81,43 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const classes = useStyles();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const nameChangeHandler = (e) => {
+    setName(e.target.value);
+  };
+  const emailChangeHandler = (e) => {
+    setEmail(e.target.value);
+  };
+  const subjectChangeHandler = (e) => {
+    setSubject(e.target.value);
+  };
+
+  const messageChangeHandler = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/api/contact/new-message", {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err.response);
+        console.log(err.response);
+      });
+  };
+
   return (
     <Container className={classes.root}>
       <Typography
@@ -92,11 +130,17 @@ const ContactForm = () => {
       </Typography>
       <Grid container spacing={4}>
         <Grid item md={8}>
-          <form>
+          <form onSubmit={submitHandler}>
             <Grid container spacing={2}>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
                 <FormControl fullWidth>
-                  <OutlinedInput placeholder="Your Name *" required type="text" />
+                  <OutlinedInput
+                    placeholder="Your Name *"
+                    required
+                    type="text"
+                    value={name}
+                    onChange={nameChangeHandler}
+                  />
                 </FormControl>
               </Grid>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
@@ -105,12 +149,20 @@ const ContactForm = () => {
                     placeholder="Your Email *"
                     required
                     type="email"
+                    value={email}
+                    onChange={emailChangeHandler}
                   />
                 </FormControl>
               </Grid>
               <Grid item md={12}>
                 <FormControl fullWidth>
-                  <OutlinedInput placeholder="Subject *" required type="text" />
+                  <OutlinedInput
+                    placeholder="Subject *"
+                    required
+                    type="text"
+                    value={subject}
+                    onChange={subjectChangeHandler}
+                  />
                 </FormControl>
               </Grid>
               <Grid item md={12}>
@@ -122,11 +174,17 @@ const ContactForm = () => {
                     maxRows={5}
                     required
                     type="text"
+                    value={message}
+                    onChange={messageChangeHandler}
                   />
                 </FormControl>
               </Grid>
             </Grid>
-            <Button variant="contained" style={{ marginTop: "15px" }}>
+            <Button
+              variant="contained"
+              style={{ marginTop: "15px" }}
+              type="submit"
+            >
               Send Message
             </Button>
           </form>

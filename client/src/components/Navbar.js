@@ -201,7 +201,7 @@ const Navbar = () => {
           </FormControl>
         </Box>
       </Container>
-      <AppBar position="sticky" className={classes.appBar} disableElevation>
+      <AppBar position="sticky" className={classes.appBar}>
         <Container
           sx={{
             "& .MuiToolbar-root": {

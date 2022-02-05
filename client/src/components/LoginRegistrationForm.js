@@ -95,8 +95,8 @@ const LoginForm = () => {
         navigate("/");
       })
       .catch((err) => {
-        alert(err);
-        console.log(err);
+        alert(err.response.data.error);
+        console.log(err.response);
       });
   };
 
@@ -112,7 +112,7 @@ const LoginForm = () => {
         console.log(res);
       })
       .catch((err) => {
-        alert(err.error);
+        alert(err.response.data.error);
       });
   };
   return (
@@ -190,7 +190,11 @@ const LoginForm = () => {
                 value={registerPassword}
               />
             </FormControl>
-            <Button variant="contained" style={{ marginTop: "15px" }}>
+            <Button
+              variant="contained"
+              style={{ marginTop: "15px" }}
+              type="submit"
+            >
               Registration
             </Button>
           </form>
