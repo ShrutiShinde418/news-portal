@@ -1,43 +1,33 @@
 const express = require("express");
 const router = express.Router();
-const Category = require("../models/Category");
+const multer = require("multer");
+const {
+  getCategories,
+  addCategory,
+  updateCategory,
+  deleteCategory,
+} = require("../controllers/categoryController");
+const { imageFileFilter } = require("../utils/imageFileFilter");
 
-router.route("/").get((req, res, next) => {
-  Category.find({})
-    .then(
-      (data) => {
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res.json(data);
-      },
-      (err) => next(err)
-    )
-    .catch((err) => next(err));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images/category");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
 });
 
-router.route("/add-category").post((req, res, next) => {
-  Category.create(req.body)
-    .then(
-      (category) => {
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).json(category);
-      },
-      (err) => next(err)
-    )
-    .catch((err) => next(err));
-});
 
-router.route("/update-category").put((req, res, next) => {
-  Category.findByIdAndUpdate(
-    req.params.category,
-    { $set: req.body },
-    { new: true }
-  )
-    .then(
-      (category) => {
-        res.status(200).json(category);
-      },
-      (err) => next(err)
-    )
-    .catch((err) => next(err));
-});
+const upload = multer({ storage: storage, fileFilter: imageFileFilter });
+
+router.route("/").get(getCategories);
+
+router.route("/add-category").post(upload.single("image"), addCategory);
+
+router.route("/update-category").put(upload.single("image"), updateCategory);
+
+router.route("/delete-category/:categoryId").delete(deleteCategory);
+
+module.exports = router;

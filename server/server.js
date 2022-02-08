@@ -5,6 +5,8 @@ const cors = require("cors");
 const authRouter = require("./routes/authRouter");
 const contactRouter = require("./routes/contactRouter");
 const privateRouter = require("./routes/privateRouter");
+const categoryRouter = require("./routes/categoryRouter");
+const commentRouter = require("./routes/commentRouter");
 const errorHandler = require("./middleware/error");
 const subscriptionRouter = require("./routes/subscriptionRouter");
 //Connect DB
@@ -16,6 +18,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/private", privateRouter);
 app.use("/api/subscription", subscriptionRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/category", categoryRouter);
+app.use("/api/comments", commentRouter);
 app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 app.use((err, req, res, next) => {

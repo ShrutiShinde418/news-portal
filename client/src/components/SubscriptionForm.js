@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Box,
   Grid,
@@ -7,7 +8,7 @@ import {
   Select,
   MenuItem,
   Typography,
-  InputLabel,
+  FormLabel,
   FormGroup,
   Button,
   FormControlLabel,
@@ -34,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
       height: "15px",
       color: "#999999",
     },
+    "& .MuiFormGroup-root": {
+      flexDirection: "row",
+    },
     width: "100%",
     height: "100%",
     display: "flex",
@@ -43,6 +47,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const newsFrequency = ["Daily", "Weekly", "Monthly"];
+
+const subscriptionCategories = [
+  "Travel",
+  "Food",
+  "Technology",
+  "Lifestyle",
+  "Video",
+  "World",
+  "Science",
+  "Weekly News",
+  "Politics",
+];
+
 const SubscriptionForm = () => {
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -50,17 +68,45 @@ const SubscriptionForm = () => {
   const [email, setEmail] = useState("");
   const [newsNo, setNewsNo] = useState("");
   const [frequency, setFrequency] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const nameChangeHandler = (e) => setName(e.target.value);
   const phoneChangeHandler = (e) => setPhone(e.target.value);
   const emailChangeHandler = (e) => setEmail(e.target.value);
   const numberChangeHandler = (e) => setNewsNo(e.target.value);
-  const frequencyChangeHandler = (e) => {
-    setFrequency(e.target.value);
-    console.log(frequency);
+  const frequencyChangeHandler = (e) => setFrequency(e.target.value);
+  const categoryChangeHandler = (e) => {
+    setCategories((prevState) => {
+      return [...prevState, e.target.name];
+    });
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "http://localhost:5000/api/subscription/add-subscriber",
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          frequency: frequency,
+          numberOfNews: +newsNo,
+          category: categories,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err.response.data.error);
+        console.log(err.response);
+      });
   };
 
-  const newsFrequency = ["Daily", "Weekly", "Monthly"];
+  const error = categories.length === 0;
 
   return (
     <Grid container className={classes.root}>
@@ -77,7 +123,7 @@ const SubscriptionForm = () => {
           <Typography component="h1" variant="h5">
             Subscribe
           </Typography>
-          <Box component="form" sx={{ mt: 1 }}>
+          <Box component="form" sx={{ mt: 1 }} onSubmit={submitHandler}>
             <FormControl fullWidth sx={{ marginBottom: "1.5rem" }}>
               <OutlinedInput
                 placeholder="Name *"
@@ -105,15 +151,34 @@ const SubscriptionForm = () => {
                 onChange={phoneChangeHandler}
               />
             </FormControl>
+            <FormControl
+              required
+              error={error}
+              component="fieldset"
+              sx={{ marginBottom: "1rem" }}
+            >
+              <FormLabel component="legend">Pick at least one</FormLabel>
+              <FormGroup>
+                {subscriptionCategories.map((category) => (
+                  <FormControlLabel
+                    control={<Checkbox name={category} />}
+                    label={category}
+                    key={category}
+                    onChange={categoryChangeHandler}
+                  />
+                ))}
+              </FormGroup>
+            </FormControl>
             <FormControl sx={{ marginBottom: "1.5rem" }} fullWidth required>
               <Select
                 value={frequency}
                 onChange={frequencyChangeHandler}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
+                sx={{ height: "48px", color: "#D6D6D6" }}
               >
                 <MenuItem value="">
-                  <p style={{ margin: 0 }}>Frequency *</p>
+                  <p style={{ margin: 0, color: "#D6D6D6" }}>Frequency *</p>
                 </MenuItem>
                 {newsFrequency.map((item) => {
                   return (
@@ -122,7 +187,6 @@ const SubscriptionForm = () => {
                     </MenuItem>
                   );
                 })}
-
               </Select>
             </FormControl>
             <FormControl fullWidth sx={{ marginBottom: "1.5rem" }}>

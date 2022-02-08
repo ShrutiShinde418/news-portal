@@ -11,6 +11,7 @@ const CategorySchema = new Schema(
     slug: { required: true, type: String },
     image: {
       type: String,
+      required: true,
     },
   },
   {
