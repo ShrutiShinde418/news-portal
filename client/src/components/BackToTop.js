@@ -1,37 +1,79 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
+import { useTheme } from "@emotion/react";
+import Box from "@mui/material/Box";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Zoom from "@mui/material/Zoom";
+import { Fab } from "@mui/material";
+
+const ScrollTop = (props) => {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 70,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
+};
 
 const useStyles = makeStyles((theme) => ({
   backToTop: {
     position: "fixed",
-    background: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    width: "35px",
-    height: "35px",
-    textAlign: "center",
     lineHeight: 1,
-    fontSize: "16px",
-    right: "15px",
+    fontSize: 16,
+    right: 15,
     left: "95vw",
-    bottom: "15px",
+    bottom: 15,
     transition: "background 0.5s",
-    borderRadius: theme.shape.borderRadius,
     zIndex: 11,
-    "&:hover": {
-      background: theme.palette.common.black,
-    },
-    "& i": {
-      paddingTop: "10px",
-    },
   },
 }));
 
 const BackToTop = () => {
   const classes = useStyles();
+  const theme = useTheme();
   return (
-    <a href="#" className={classes.backToTop}>
-      <i className="fa fa-chevron-up"></i>
-    </a>
+    <ScrollTop className={classes.backToTop}>
+      <Fab
+        aria-label="scroll back to top"
+        size="small"
+        color="primary"
+        sx={{
+          borderRadius: 1,
+          width: 35,
+          height: 35,
+          color: theme.palette.common.white,
+          "&:hover": {
+            backgroundColor: theme.palette.common.black,
+          },
+        }}
+      >
+        <i className="fa fa-chevron-up"></i>
+      </Fab>
+    </ScrollTop>
   );
 };
 

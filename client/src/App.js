@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
@@ -7,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ContactPage from "./pages/ContactPage";
 import LoginOrRegistrationPage from "./pages/LoginOrRegistrationPage";
 import SubscriptionPage from "./pages/SubscriptionPage";
+import BusinessPage from "./pages/BusinessPage";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +33,7 @@ const App = () => {
           element={<LoginOrRegistrationPage />}
         />
         <Route path="/subscribe" element={<SubscriptionPage />} />
+        <Route path="/business" element={<BusinessPage />} />
       </Routes>
       <Footer />
     </ThemeProvider>

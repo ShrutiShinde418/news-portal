@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { NavLink, Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import logo from "../assets/logo.png";
@@ -25,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFF",
     fontFamily: theme.typography.fontFamily,
     fontSize: "14px",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
   topNav__contact: {
     display: "flex",
@@ -58,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: "1rem",
+    [theme.breakpoints.down("lg")]: {
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
   search: {
     "&:focus": {
@@ -169,36 +180,49 @@ const Navbar = () => {
         </Container>
       </div>
       <Container>
-        <Box className={classes.searchBar}>
-          <img src={logo} alt="NewsApp logo" className={classes.logo} />
-          <img src={advertisement} alt="Advertisement" />
-          <FormControl
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                paddingRight: 0,
-                justifyContent: "space-between",
-              },
-            }}
+        <Box>
+          <Grid
+            container
+            fullWidth
+            spacing={{ md: 4, xs: 2 }}
+            className={classes.searchBar}
           >
-            <OutlinedInput
-              endAdornment={
-                <InputAdornment position="end">
-                  <button className={classes.btn}>
-                    <i className="fa fa-search fa-lg"></i>
-                  </button>
-                </InputAdornment>
-              }
-              sx={{
-                "& .MuiOutlinedInput-input": {
-                  padding: "0 15px",
-                  height: "50px",
-                },
-              }}
-              placeholder="Search"
-              classes={classes.search}
-              inputProps={{ type: "text" }}
-            />
-          </FormControl>
+            <Grid item>
+              <img src={logo} alt="NewsApp logo" className={classes.logo} />
+            </Grid>
+            <Grid item>
+              <img src={advertisement} alt="Advertisement" />
+            </Grid>
+            <Grid item>
+              <FormControl
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    paddingRight: 0,
+                    justifyContent: "space-between",
+                  },
+                }}
+              >
+                <OutlinedInput
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <button className={classes.btn}>
+                        <i className="fa fa-search fa-lg"></i>
+                      </button>
+                    </InputAdornment>
+                  }
+                  sx={{
+                    "& .MuiOutlinedInput-input": {
+                      padding: "0 15px",
+                      height: "50px",
+                    },
+                  }}
+                  placeholder="Search"
+                  classes={classes.search}
+                  inputProps={{ type: "text" }}
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
         </Box>
       </Container>
       <AppBar position="sticky" className={classes.appBar}>
@@ -212,15 +236,48 @@ const Navbar = () => {
         >
           <Toolbar disableGutters>
             <div className={classes.navigation}>
-              <NavLink to="/" className={classes.active}>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
                 HOME
               </NavLink>
-              <NavLink to="/">BUSINESS</NavLink>
-              <NavLink to="/">POLITICS</NavLink>
-              <NavLink to="/">LIFESTYLE</NavLink>
-              <NavLink to="/">SPORTS</NavLink>
-              <NavLink to="/contact">CONTACT US</NavLink>
-              <NavLink to="/login_registration">LOGIN</NavLink>
+              <NavLink
+                to="/business"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                BUSINESS
+              </NavLink>
+              <NavLink
+                to="/politics"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                POLITICS
+              </NavLink>
+              <NavLink
+                to="/lifestyle"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                LIFESTYLE
+              </NavLink>
+              <NavLink
+                to="/sports"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                SPORTS
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                CONTACT US
+              </NavLink>
+              <NavLink
+                to="/login_registration"
+                className={({ isActive }) => (isActive ? classes.active : "")}
+              >
+                LOGIN
+              </NavLink>
             </div>
             <div className={classes.social}>
               <Link to="/">
@@ -242,6 +299,7 @@ const Navbar = () => {
           </Toolbar>
         </Container>
       </AppBar>
+      <div id="back-to-top-anchor" />
     </header>
   );
 };
