@@ -66,7 +66,7 @@ const Tile = (props) => {
   return (
     <Grid container mb={2}>
       <Grid item xs={4}>
-        <img src={props.image} className={classes.imgFluid} />
+        <img src={props.image} className={classes.imgFluid} alt="Lorem Ipsum" />
       </Grid>
       <Grid item xs={8} className={classes.headline}>
         <Typography component="h2">{props.title}</Typography>
@@ -88,12 +88,12 @@ function a11yProps(index) {
   };
 }
 
-const TabBar = () => {
+const TabBar = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
 
@@ -102,7 +102,7 @@ const TabBar = () => {
   };
 
   return (
-    <Box sx={{ width: 540 }} className={classes.root}>
+    <Box className={classes.root}>
       <AppBar position="static">
         <Tabs
           value={value}
@@ -111,9 +111,9 @@ const TabBar = () => {
           variant="fullWidth"
           aria-label="full width tabs"
         >
-          <Tab label="Featured News" {...a11yProps(0)} />
-          <Tab label="Popular News" {...a11yProps(1)} />
-          <Tab label="Latest News" {...a11yProps(2)} />
+          <Tab label={props.headings[0]} {...a11yProps(0)} />
+          <Tab label={props.headings[1]} {...a11yProps(1)} />
+          <Tab label={props.headings[2]} {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews

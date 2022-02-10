@@ -5,19 +5,22 @@ const subscriptionSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, "Please enter your name"],
     },
     email: {
       type: String,
-      required: true,
+      required: [true, " Please enter your email"],
     },
     phone: {
       type: String,
-      required: true,
+      required: [true, " Please enter your phone number"],
     },
-    category: [{ type: String, required: true }],
-    frequency: { type: String, required: true },
-    numberOfNews: { type: Number, required: true },
+    category: [{ type: String, required: [true, " Please select a category"] }],
+    frequency: { type: String, required: [true, " Please choose a frequency"] },
+    numberOfNews: {
+      type: Number,
+      required: [true, " Please enter the number of news"],
+    },
     subscriptionDate: { type: Date, default: Date.now() },
   },
   { timestamps: true }

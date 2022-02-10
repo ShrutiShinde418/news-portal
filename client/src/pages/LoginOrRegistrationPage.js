@@ -2,9 +2,11 @@ import React, { Fragment } from "react";
 import BackToTop from "../components/BackToTop";
 import LoginForm from "../components/forms/LoginForm";
 import { makeStyles } from "@mui/styles";
-import { Grid, Typography, Container } from "@mui/material";
+import { authActions } from "../store/auth";
+import { Grid, Typography, Container, Alert } from "@mui/material";
 import { Link } from "react-router-dom";
 import RegistrationForm from "../components/forms/RegistrationForm";
+import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const LoginOrRegistrationPage = () => {
+  const dispatch = useDispatch();
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
   const classes = useStyles();
   return (
     <Fragment>
@@ -42,6 +46,15 @@ const LoginOrRegistrationPage = () => {
         >
           <Link to="/">Home</Link> &nbsp;/&nbsp; Registration or Login
         </Typography>
+        {errorMessage && (
+          <Alert
+            severity="error"
+            sx={{ marginBottom: "20px" }}
+            onClose={() => dispatch(authActions.errorHandler(""))}
+          >
+            {errorMessage}
+          </Alert>
+        )}
         <Grid container spacing={5}>
           <Grid item md={6}>
             <Typography variant="h5" component="h2">

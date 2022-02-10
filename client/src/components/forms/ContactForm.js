@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Grid, Typography, Container, Button } from "@mui/material";
+import { Grid, Typography, Container, Alert } from "@mui/material";
 import SocialInfo from "../SocialInfo";
 import { makeStyles } from "@mui/styles";
 import SubmitButton from "../SubmitButton";
 import Input from "../Input";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +64,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ContactForm = () => {
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -95,8 +99,7 @@ const ContactForm = () => {
         console.log(res);
       })
       .catch((err) => {
-        alert(err.response);
-        console.log(err.response);
+        dispatch(authActions.errorHandler(err.response.data.error));
       });
   };
 
@@ -110,11 +113,20 @@ const ContactForm = () => {
       >
         <Link to="/">Home</Link> &nbsp;/&nbsp; Contact
       </Typography>
+      {errorMessage && (
+        <Alert
+          severity="error"
+          sx={{ marginBottom: "20px" }}
+          onClose={() => dispatch(authActions.errorHandler(""))}
+        >
+          {errorMessage}
+        </Alert>
+      )}
       <Grid container spacing={4}>
         <Grid item md={8}>
           <form onSubmit={submitHandler}>
             <Grid container spacing={2}>
-              <Grid item md={6} sx={{ marginBottom: "1rem" }}>
+              <Grid item md={6} sx={{ marginBottom: "1rem" }} xs={12}>
                 <Input
                   placeholder="Your Name *"
                   type="text"
@@ -125,7 +137,7 @@ const ContactForm = () => {
                   onChange={nameChangeHandler}
                 />
               </Grid>
-              <Grid item md={6} sx={{ marginBottom: "1rem" }}>
+              <Grid item md={6} sx={{ marginBottom: "1rem" }} xs={12}>
                 <Input
                   placeholder="Your Email *"
                   type="email"
@@ -136,7 +148,7 @@ const ContactForm = () => {
                   onChange={emailChangeHandler}
                 />
               </Grid>
-              <Grid item md={12}>
+              <Grid item xs={12}>
                 <Input
                   placeholder="Subject *"
                   type="text"
@@ -147,7 +159,7 @@ const ContactForm = () => {
                   onChange={subjectChangeHandler}
                 />
               </Grid>
-              <Grid item md={12}>
+              <Grid item xs={12}>
                 <Input
                   placeholder="Message *"
                   multiline={true}

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import Input from "../Input";
 import SubmitButton from "../SubmitButton";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../../store/auth";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -35,8 +37,7 @@ const LoginForm = () => {
         navigate("/");
       })
       .catch((err) => {
-        alert(err.response.data.error);
-        console.log(err.response);
+        dispatch(authActions.errorHandler(err.response.data.error));
       });
   };
   return (

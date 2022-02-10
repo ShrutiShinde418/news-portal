@@ -78,7 +78,11 @@ const InThisCategory = () => {
           return (
             <Fragment key={newsItem.id}>
               <Grid item md={4}>
-                <img src={newsItem.image} className={classes.imgFluid} />
+                <img
+                  src={newsItem.image}
+                  className={classes.imgFluid}
+                  alt="Lorem Ipsum"
+                />
               </Grid>
               <Grid item md={8}>
                 <Link to="/">{newsItem.headline}</Link>

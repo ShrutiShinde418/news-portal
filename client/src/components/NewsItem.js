@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   imgFluid: {
     height: "auto",
@@ -45,7 +44,7 @@ const NewsItem = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.img}>
-      <img src={props.src} className={classes.imgFluid} />
+      <img src={props.src} className={classes.imgFluid} alt="Lorem Ipsum" />
       <div className={classes.title}>
         <Link to="#">{props.title}</Link>
       </div>

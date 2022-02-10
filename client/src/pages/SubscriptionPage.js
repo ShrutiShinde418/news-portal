@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import SubscriptionForm from "../components/forms/SubscriptionForm";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Alert } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import BackToTop from "../components/BackToTop";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store/auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SubscriptionPage = () => {
+  const dispatch = useDispatch();
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
   const classes = useStyles();
   return (
     <Fragment>
@@ -40,6 +44,15 @@ const SubscriptionPage = () => {
             <Typography component="h1" variant="h5">
               Subscribe
             </Typography>
+            {errorMessage && (
+              <Alert
+                severity="error"
+                sx={{ marginBottom: "20px" }}
+                onClose={() => dispatch(authActions.errorHandler(""))}
+              >
+                {errorMessage}
+              </Alert>
+            )}
             <SubscriptionForm />
           </Box>
         </Grid>

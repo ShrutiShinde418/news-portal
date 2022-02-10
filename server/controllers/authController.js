@@ -3,7 +3,7 @@ const crypto = require("crypto");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmail = require("../utils/sendEmail");
 exports.register = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { fullName, email, password } = req.body;
 
   try {
     const user = await User.create({
@@ -21,17 +21,17 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
+    return next(new ErrorResponse("Please provide an email and password.", 400));
   }
   try {
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return next(new ErrorResponse("User not found", 404));
+      return next(new ErrorResponse("User not found.", 404));
     }
     const isMatch = await user.matchPassword(password);
 
     if (!isMatch) {
-      return next(new ErrorResponse("User not found", 401));
+      return next(new ErrorResponse("Password does not match.", 401));
     }
     sendToken(user, 201, res);
   } catch (error) {
@@ -44,7 +44,7 @@ exports.forgotPassword = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return next(new ErrorResponse("Email could not be sent", 404));
+      return next(new ErrorResponse("Email could not be sent.", 404));
     }
     const resetToken = user.getResetPasswordToken();
 
@@ -61,14 +61,14 @@ exports.forgotPassword = async (req, res, next) => {
         subject: "Password reset",
         text: message,
       });
-      res.status(200).json({ success: true, data: "Email sent" });
+      res.status(200).json({ success: true, data: "Email sent." });
     } catch (error) {
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
 
       await user.save();
 
-      return next(new ErrorResponse("Email could not be sent", 500));
+      return next(new ErrorResponse("Email could not be sent.", 500));
     }
   } catch (error) {
     next(error);

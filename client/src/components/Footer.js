@@ -128,6 +128,11 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiContainer-root": {
       display: "flex",
       justifyContent: "space-between",
+      [theme.breakpoints.down("md")]: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      },
     },
     color: theme.palette.common.white,
     "& h5 a": {
@@ -289,11 +294,19 @@ const Footer = () => {
           </Typography>
           <Typography component="h5">
             Made by&nbsp;
-            <a href="https://github.com/ShrutiShinde418" target="_blank">
+            <a
+              href="https://github.com/ShrutiShinde418"
+              target="_blank"
+              rel="noreferrer"
+            >
               Shruti Shinde &nbsp;
             </a>
             and&nbsp;
-            <a href="https://github.com/Durgvanshi" target="_blank">
+            <a
+              href="https://github.com/Durgvanshi"
+              target="_blank"
+              rel="noreferrer"
+            >
               Aryan Singh
             </a>
           </Typography>

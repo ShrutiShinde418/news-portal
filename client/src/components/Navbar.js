@@ -54,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
     "& a span:hover": {
       color: theme.palette.common.white,
     },
+    [theme.breakpoints.down("md")]:{
+      paddingBottom: 10,
+      paddingRight: 18,
+    }
   },
   logo: {
     maxWidth: "100%",

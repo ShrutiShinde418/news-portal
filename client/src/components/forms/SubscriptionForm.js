@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import Input from "../Input";
 import SubmitButton from "../SubmitButton";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const newsFrequency = ["Daily", "Weekly", "Monthly"];
 
@@ -28,6 +30,7 @@ const subscriptionCategories = [
 ];
 
 const SubscriptionForm = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -66,8 +69,7 @@ const SubscriptionForm = () => {
         console.log(res);
       })
       .catch((err) => {
-        alert(err.response.data.error);
-        console.log(err.response);
+        dispatch(authActions.errorHandler(err.response.data.error));
       });
   };
 

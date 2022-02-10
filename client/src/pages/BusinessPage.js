@@ -8,12 +8,14 @@ const BusinessPage = () => {
   return (
     <Fragment>
       <Container sx={{ marginTop: "1.5rem" }}>
-        <Grid container>
+        <Grid container spacing={4}>
           <Grid item md={6}>
-            <TabBar />
+            <TabBar
+              headings={["Featured News", "Popular News", "Latest News"]}
+            />
           </Grid>
           <Grid item md={6}>
-            <TabBar />
+            <TabBar headings={["Most Viewed", "Most Read", "Most Recent"]} />
           </Grid>
           <Grid item md={6} xs={12}>
             <TopNews />

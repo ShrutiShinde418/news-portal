@@ -5,7 +5,7 @@ const newsPostSchema = new Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
+      required: [true, "Please select a category"],
     },
     categoryPosition: {
       type: Number,
@@ -23,7 +23,7 @@ const newsPostSchema = new Schema(
     shortHeadline: String,
     headline: {
       type: String,
-      required: true,
+      required: [true, " Please enter a headline"],
     },
     details: String,
     reporter: {
