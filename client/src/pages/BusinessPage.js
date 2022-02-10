@@ -1,19 +1,27 @@
-import React from "react";
+import React, { Fragment } from "react";
 import TabBar from "../components/TabBar";
 import { Container, Grid } from "@mui/material";
+import BackToTop from "../components/BackToTop";
+import TopNews from "../components/TopNews";
 
 const BusinessPage = () => {
   return (
-    <Container sx={{ marginTop: "1.5rem" }}>
-      <Grid container>
-        <Grid item md={6}>
-          <TabBar />
+    <Fragment>
+      <Container sx={{ marginTop: "1.5rem" }}>
+        <Grid container>
+          <Grid item md={6}>
+            <TabBar />
+          </Grid>
+          <Grid item md={6}>
+            <TabBar />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TopNews />
+          </Grid>
         </Grid>
-        <Grid item md={6}>
-          <TabBar />
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+      <BackToTop />
+    </Fragment>
   );
 };
 

@@ -289,10 +289,13 @@ const Footer = () => {
           </Typography>
           <Typography component="h5">
             Made by&nbsp;
-            <a href="https://github.com/ShrutiShinde418">
+            <a href="https://github.com/ShrutiShinde418" target="_blank">
               Shruti Shinde &nbsp;
             </a>
-            and&nbsp;<a href="https://github.com/Durgvanshi">Aryan Singh</a>
+            and&nbsp;
+            <a href="https://github.com/Durgvanshi" target="_blank">
+              Aryan Singh
+            </a>
           </Typography>
         </Container>
       </div>

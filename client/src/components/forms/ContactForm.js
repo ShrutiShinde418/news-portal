@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {
-  Grid,
-  Typography,
-  Container,
-  FormControl,
-  OutlinedInput,
-  Button,
-} from "@mui/material";
-import SocialInfo from "./SocialInfo";
+import { Grid, Typography, Container, Button } from "@mui/material";
+import SocialInfo from "../SocialInfo";
 import { makeStyles } from "@mui/styles";
+import SubmitButton from "../SubmitButton";
+import Input from "../Input";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,19 +19,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
       fontWeight: theme.typography.fontWeightRegular,
       color: "#353535",
-    },
-    "& .MuiButton-contained": {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-      textTransform: "none",
-      fontSize: "16px",
-      "&:hover": {
-        backgroundColor: theme.palette.primary.main,
-      },
-    },
-    "& .MuiOutlinedInput-input": {
-      height: "15px",
-      color: "#999999",
     },
   },
   pagination: {
@@ -133,60 +115,51 @@ const ContactForm = () => {
           <form onSubmit={submitHandler}>
             <Grid container spacing={2}>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    placeholder="Your Name *"
-                    required
-                    type="text"
-                    value={name}
-                    onChange={nameChangeHandler}
-                  />
-                </FormControl>
+                <Input
+                  placeholder="Your Name *"
+                  type="text"
+                  minRows={false}
+                  maxRows={false}
+                  multiline={false}
+                  value={name}
+                  onChange={nameChangeHandler}
+                />
               </Grid>
               <Grid item md={6} sx={{ marginBottom: "1rem" }}>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    placeholder="Your Email *"
-                    required
-                    type="email"
-                    value={email}
-                    onChange={emailChangeHandler}
-                  />
-                </FormControl>
+                <Input
+                  placeholder="Your Email *"
+                  type="email"
+                  minRows={false}
+                  maxRows={false}
+                  multiline={false}
+                  value={email}
+                  onChange={emailChangeHandler}
+                />
               </Grid>
               <Grid item md={12}>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    placeholder="Subject *"
-                    required
-                    type="text"
-                    value={subject}
-                    onChange={subjectChangeHandler}
-                  />
-                </FormControl>
+                <Input
+                  placeholder="Subject *"
+                  type="text"
+                  minRows={false}
+                  maxRows={false}
+                  multiline={false}
+                  value={subject}
+                  onChange={subjectChangeHandler}
+                />
               </Grid>
               <Grid item md={12}>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    placeholder="Message *"
-                    multiline
-                    minRows={5}
-                    maxRows={5}
-                    required
-                    type="text"
-                    value={message}
-                    onChange={messageChangeHandler}
-                  />
-                </FormControl>
+                <Input
+                  placeholder="Message *"
+                  multiline={true}
+                  minRows={5}
+                  maxRows={5}
+                  type="text"
+                  value={message}
+                  onChange={messageChangeHandler}
+                />
               </Grid>
             </Grid>
-            <Button
-              variant="contained"
-              style={{ marginTop: "15px" }}
-              type="submit"
-            >
-              Send Message
-            </Button>
+            <SubmitButton title="Send Message" />
           </form>
         </Grid>
         <Grid item md={4}>
