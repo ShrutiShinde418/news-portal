@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const LoginOrRegistrationPage = () => {
   const dispatch = useDispatch();
   const errorMessage = useSelector((state) => state.auth.errorMessage);
+  const successMessage = useSelector((state) => state.auth.successMessage);
   const classes = useStyles();
   return (
     <Fragment>
@@ -46,6 +47,15 @@ const LoginOrRegistrationPage = () => {
         >
           <Link to="/">Home</Link> &nbsp;/&nbsp; Registration or Login
         </Typography>
+        {successMessage && (
+          <Alert
+            severity="success"
+            sx={{ marginBottom: "20px" }}
+            onClose={() => dispatch(authActions.successHandler(""))}
+          >
+            {successMessage}
+          </Alert>
+        )}
         {errorMessage && (
           <Alert
             severity="error"

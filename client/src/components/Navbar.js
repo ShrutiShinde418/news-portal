@@ -1,7 +1,8 @@
-import React from "react";
+import React, { cloneElement } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import PropTypes from "prop-types";
 import { NavLink, Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import logo from "../assets/logo.png";
@@ -12,6 +13,7 @@ import {
   InputAdornment,
   AppBar,
   Toolbar,
+  useScrollTrigger,
 } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,10 +56,10 @@ const useStyles = makeStyles((theme) => ({
     "& a span:hover": {
       color: theme.palette.common.white,
     },
-    [theme.breakpoints.down("md")]:{
+    [theme.breakpoints.down("md")]: {
       paddingBottom: 10,
       paddingRight: 18,
-    }
+    },
   },
   logo: {
     maxWidth: "100%",
@@ -149,7 +151,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const NavSticky = (props) => {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 150,
+  });
+
+  return cloneElement(children, {
+    position: trigger ? "fixed" : "static",
+  });
+};
+
+NavSticky.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+const Navbar = (props) => {
   const classes = useStyles();
   return (
     <header>
@@ -229,80 +247,85 @@ const Navbar = () => {
           </Grid>
         </Box>
       </Container>
-      <AppBar position="sticky" className={classes.appBar}>
-        <Container
-          sx={{
-            "& .MuiToolbar-root": {
-              height: "45px",
-              minHeight: "45px",
-            },
-          }}
-        >
-          <Toolbar disableGutters>
-            <div className={classes.navigation}>
-              <NavLink
-                to="/"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                HOME
-              </NavLink>
-              <NavLink
-                to="/business"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                BUSINESS
-              </NavLink>
-              <NavLink
-                to="/politics"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                POLITICS
-              </NavLink>
-              <NavLink
-                to="/lifestyle"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                LIFESTYLE
-              </NavLink>
-              <NavLink
-                to="/sports"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                SPORTS
-              </NavLink>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                CONTACT US
-              </NavLink>
-              <NavLink
-                to="/login_registration"
-                className={({ isActive }) => (isActive ? classes.active : "")}
-              >
-                LOGIN
-              </NavLink>
-            </div>
-            <div className={classes.social}>
-              <Link to="/">
-                <i className="fab fa-twitter"></i>
-              </Link>
-              <Link to="/">
-                <i className="fab fa-facebook-f" style={{ width: "15px" }}></i>
-              </Link>
-              <Link to="/">
-                <i className="fab fa-linkedin-in"></i>
-              </Link>
-              <Link to="/">
-                <i className="fab fa-instagram"></i>
-              </Link>
-              <Link to="/">
-                <i className="fab fa-youtube"></i>
-              </Link>
-            </div>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <NavSticky {...props}>
+        <AppBar position="static" className={classes.appBar}>
+          <Container
+            sx={{
+              "& .MuiToolbar-root": {
+                height: "45px",
+                minHeight: "45px",
+              },
+            }}
+          >
+            <Toolbar disableGutters>
+              <div className={classes.navigation}>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  HOME
+                </NavLink>
+                <NavLink
+                  to="/business"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  BUSINESS
+                </NavLink>
+                <NavLink
+                  to="/politics"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  POLITICS
+                </NavLink>
+                <NavLink
+                  to="/lifestyle"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  LIFESTYLE
+                </NavLink>
+                <NavLink
+                  to="/sports"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  SPORTS
+                </NavLink>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  CONTACT US
+                </NavLink>
+                <NavLink
+                  to="/login_registration"
+                  className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                  LOGIN
+                </NavLink>
+              </div>
+              <div className={classes.social}>
+                <Link to="/">
+                  <i className="fab fa-twitter"></i>
+                </Link>
+                <Link to="/">
+                  <i
+                    className="fab fa-facebook-f"
+                    style={{ width: "15px" }}
+                  ></i>
+                </Link>
+                <Link to="/">
+                  <i className="fab fa-linkedin-in"></i>
+                </Link>
+                <Link to="/">
+                  <i className="fab fa-instagram"></i>
+                </Link>
+                <Link to="/">
+                  <i className="fab fa-youtube"></i>
+                </Link>
+              </div>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </NavSticky>
       <div id="back-to-top-anchor" />
     </header>
   );

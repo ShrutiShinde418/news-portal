@@ -5,7 +5,9 @@ exports.newMessage = async (req, res, next) => {
     .then(
       (message) => {
         res.setHeader("Content-Type", "application/json");
-        res.status(200).json(message);
+        res
+          .status(200)
+          .json({ response: "Message Sent Successfully", message: message });
       },
       (err) => next(err)
     )

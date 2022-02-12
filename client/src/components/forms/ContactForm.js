@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContactForm = () => {
   const errorMessage = useSelector((state) => state.auth.errorMessage);
+  const successMessage = useSelector((state) => state.auth.successMessage);
   const dispatch = useDispatch();
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -96,7 +97,7 @@ const ContactForm = () => {
         message: message,
       })
       .then((res) => {
-        console.log(res);
+        dispatch(authActions.successHandler(res.data.response));
       })
       .catch((err) => {
         dispatch(authActions.errorHandler(err.response.data.error));
@@ -113,6 +114,15 @@ const ContactForm = () => {
       >
         <Link to="/">Home</Link> &nbsp;/&nbsp; Contact
       </Typography>
+      {successMessage && (
+        <Alert
+          severity="success"
+          sx={{ marginBottom: "20px" }}
+          onClose={() => dispatch(authActions.successHandler(""))}
+        >
+          {successMessage}
+        </Alert>
+      )}
       {errorMessage && (
         <Alert
           severity="error"

@@ -27,11 +27,12 @@ const useStyles = makeStyles((theme) => ({
 const SubscriptionPage = () => {
   const dispatch = useDispatch();
   const errorMessage = useSelector((state) => state.auth.errorMessage);
+  const successMessage = useSelector((state) => state.auth.successMessage);
   const classes = useStyles();
   return (
     <Fragment>
       <Grid container className={classes.root}>
-        <Grid item xs={12} sm={8} md={4}>
+        <Grid item xs={12} sm={8} lg={4} md={6}>
           <Box
             sx={{
               my: 8,
@@ -51,6 +52,15 @@ const SubscriptionPage = () => {
                 onClose={() => dispatch(authActions.errorHandler(""))}
               >
                 {errorMessage}
+              </Alert>
+            )}
+            {successMessage && (
+              <Alert
+                severity="success"
+                sx={{ marginBottom: "20px" }}
+                onClose={() => dispatch(authActions.successHandler(""))}
+              >
+                {successMessage}
               </Alert>
             )}
             <SubscriptionForm />

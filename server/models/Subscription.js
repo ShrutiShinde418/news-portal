@@ -19,6 +19,7 @@ const subscriptionSchema = new Schema(
     frequency: { type: String, required: [true, " Please choose a frequency"] },
     numberOfNews: {
       type: Number,
+      min: [1, "Please enter a number greater than 1"],
       required: [true, " Please enter the number of news"],
     },
     subscriptionDate: { type: Date, default: Date.now() },

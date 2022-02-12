@@ -32,7 +32,7 @@ const RegistrationForm = () => {
         password: registerPassword,
       })
       .then((res) => {
-        console.log(res);
+        dispatch(authActions.successHandler("Registered Successfully"));
       })
       .catch((err) => {
         dispatch(authActions.errorHandler(err.response.data.error));

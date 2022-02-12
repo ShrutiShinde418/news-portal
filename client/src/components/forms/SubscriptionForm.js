@@ -66,7 +66,7 @@ const SubscriptionForm = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        dispatch(authActions.successHandler(res.data.message));
       })
       .catch((err) => {
         dispatch(authActions.errorHandler(err.response.data.error));
