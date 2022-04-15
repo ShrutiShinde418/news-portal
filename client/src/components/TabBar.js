@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
@@ -45,22 +45,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TabPanel = (props) => {
-  const { children, value, index } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-    >
-      {value === index && (
-        <Box sx={{ p: 3, backgroundColor: "#F2F2F2" }}>{children}</Box>
-      )}
-    </div>
-  );
-};
-
 const Tile = (props) => {
   const classes = useStyles();
   return (
@@ -72,6 +56,23 @@ const Tile = (props) => {
         <Typography component="h2">{props.title}</Typography>
       </Grid>
     </Grid>
+  );
+};
+
+const TabPanel = (props) => {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3, backgroundColor: "#F2F2F2" }}>{children}</Box>
+      )}
+    </div>
   );
 };
 
@@ -87,13 +88,12 @@ function a11yProps(index) {
     "aria-controls": `full-width-tabpanel-${index}`,
   };
 }
-
 const TabBar = (props) => {
-  const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
@@ -111,9 +111,9 @@ const TabBar = (props) => {
           variant="fullWidth"
           aria-label="full width tabs"
         >
-          <Tab label={props.headings[0]} {...a11yProps(0)} />
-          <Tab label={props.headings[1]} {...a11yProps(1)} />
-          <Tab label={props.headings[2]} {...a11yProps(2)} />
+          {props.heading.map((heading, index) => {
+            return <Tab label={heading} {...a11yProps(index)} key={index} />;
+          })}
         </Tabs>
       </AppBar>
       <SwipeableViews

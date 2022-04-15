@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-end",
     "& a": {
       color: theme.palette.common.white,
-      fontSize: 18,
+      fontSize: (props) => (props.fontSize ? props.fontSize : 18),
       textDecoration: "none",
       fontFamily: theme.typography.fontFamily,
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: (props) => (props.fontWeight ? props.fontWeight : 400),
       transition: "0.3s",
       "&:hover": { color: theme.palette.primary.main },
     },
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewsItem = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   return (
     <div className={classes.img}>
       <img src={props.src} className={classes.imgFluid} alt="Lorem Ipsum" />
