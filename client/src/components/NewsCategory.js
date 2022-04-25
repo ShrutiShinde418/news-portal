@@ -89,7 +89,7 @@ const NewsCategory = () => {
       <ul className={classes.categoryList}>
         {categories.map((category) => {
           return (
-            <li>
+            <li key={category.id}>
               <Grid container spacing={2}>
                 <Grid item md={1} sx={{ paddingLeft: 0 }}>
                   <i className="fas fa-arrow-right"></i>

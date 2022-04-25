@@ -96,14 +96,17 @@ const useStyles = makeStyles((theme) => ({
   footerMenu: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
     padding: "15px 0",
     borderTop: `1px solid ${theme.palette.common.black}`,
-    marginTop: "2rem",
+    marginTop: "0.75rem",
     "& a": {
       color: theme.palette.common.white,
-      fontSize: "14px",
-      marginRight: "15px",
-      paddingRight: "15px",
+      fontSize: 14,
+      marginRight: 15,
+      paddingRight: 15,
+      marginTop: 5,
+      marginBottom: 5,
       borderRight: `1px solid ${theme.palette.common.white}`,
       textDecoration: "none",
       fontFamily: theme.typography.fontFamily,
@@ -111,9 +114,12 @@ const useStyles = makeStyles((theme) => ({
       "&:hover": {
         color: theme.palette.primary.main,
       },
+      "&:last-of-type": {
+        borderRight: "none",
+      },
     },
-    "& a:last-of-type": {
-      borderRight: "none",
+    [theme.breakpoints.down("790")]: {
+      flexWrap: "wrap",
     },
   },
   bottom: {
@@ -122,6 +128,11 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiContainer-root": {
       display: "flex",
       justifyContent: "space-between",
+      [theme.breakpoints.down("md")]: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      },
     },
     color: theme.palette.common.white,
     "& h5 a": {
@@ -141,7 +152,7 @@ const Footer = () => {
       <div className={classes.root}>
         <Container>
           <Grid container spacing={4}>
-            <Grid item md={6} lg={3}>
+            <Grid item xs={12} lg={3} sm={6}>
               <Typography component="h1" variant="h4" className={classes.title}>
                 Get in Touch
               </Typography>
@@ -159,7 +170,7 @@ const Footer = () => {
                 <SocialInfo styles={classes.social} />
               </div>
             </Grid>
-            <Grid item md={6} lg={3}>
+            <Grid item xs={12} lg={3} sm={6}>
               <Typography component="h1" variant="h4" className={classes.title}>
                 Useful Links
               </Typography>
@@ -191,7 +202,7 @@ const Footer = () => {
                 </li>
               </ul>
             </Grid>
-            <Grid item md={6} lg={3}>
+            <Grid item xs={12} lg={3} sm={6}>
               <Typography component="h1" variant="h4" className={classes.title}>
                 Quick Links
               </Typography>
@@ -223,7 +234,7 @@ const Footer = () => {
                 </li>
               </ul>
             </Grid>
-            <Grid item md={6} lg={3}>
+            <Grid item xs={12} lg={3} sm={6}>
               <Typography component="h1" variant="h4" className={classes.title}>
                 Newsletter
               </Typography>
@@ -251,6 +262,7 @@ const Footer = () => {
                       border: "1px solid #FFF",
                     },
                   }}
+                  fullWidth
                 >
                   <OutlinedInput
                     endAdornment={
@@ -281,11 +293,22 @@ const Footer = () => {
             Copyright &copy; All Rights Reserved
           </Typography>
           <Typography component="h5">
-            Coded by&nbsp;
-            <a href="https://github.com/ShrutiShinde418">
+            Made by&nbsp;
+            <a
+              href="https://github.com/ShrutiShinde418"
+              target="_blank"
+              rel="noreferrer"
+            >
               Shruti Shinde &nbsp;
             </a>
-            and&nbsp;<a href="https://github.com/Durgvanshi">Aryan Singh</a>
+            and&nbsp;
+            <a
+              href="https://github.com/Durgvanshi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Aryan Singh
+            </a>
           </Typography>
         </Container>
       </div>

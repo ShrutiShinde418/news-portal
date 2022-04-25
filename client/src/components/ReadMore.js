@@ -56,7 +56,7 @@ const ReadMore = () => {
       <ul className={classes.newsLinks}>
         {links.map((link) => {
           return (
-            <li>
+            <li key={link}>
               <Link to="/">
                 <Grid container spacing={3}>
                   <Grid item md={1}>
