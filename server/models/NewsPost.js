@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+const sectionSchema = new Schema({
+  name: String,
+  id: Number,
+});
+
 const newsPostSchema = new Schema(
   {
     category: {
@@ -15,7 +21,7 @@ const newsPostSchema = new Schema(
     },
     releaseData: {
       type: Date,
-      default: new Date.now(),
+      default: Date.now(),
     },
     postDate: {
       type: Date,
@@ -57,11 +63,6 @@ const newsPostSchema = new Schema(
     timestamps: true,
   }
 );
-
-const sectionSchema = new Schema({
-  name: String,
-  id: Number,
-});
 
 var NewsPosts = mongoose.model("NewsPost", newsPostSchema);
 
